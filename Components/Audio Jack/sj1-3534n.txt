@@ -1,0 +1,13 @@
+﻿"Symbol";"Value";"Unit";
+"TraceParts.PartNumber";"10-15052018-121470";"";
+"REFERENCE";"SJ1-3534N";"";
+"TraceParts.PartTitle";"SJ1-353XN Series - 3.5 mm, Stereo, Right Angle, Through Hole, Audio Jack Connector";"";
+"TraceParts.InstanceId";"10-15052018-121470BUN5W0Q1LDW48DZ9GD9T9XDWV";"";
+"DESIGN";"3.5 mm Right-Angle Stereo Jack, 4 Pin PCB Mount, Non-Threaded";"";
+"TraceParts.PartStatus";"Published";"";
+"TraceParts.PartStatusId";"";"";
+"SUPPLIER";"CUI";"";
+"TraceParts.PartVersion";"1.0.1";"";
+"TRACEPARTS";"TRACEPARTS";"";
+"TraceParts.PartLanguage";"en";"";
+"TraceParts.ClassPath";"CUI:10-15052018-121470";"";
