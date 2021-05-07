@@ -1,0 +1,51 @@
+Change Physical Footprint: Designator=BT1 Old Footprint=9V Battery New Footprint=9V Battery
+Change Physical Footprint: Designator=C1 Old Footprint=10uF CAP New Footprint=10uF CAP
+Change Physical Footprint: Designator=C2 Old Footprint=220uF CAP New Footprint=220uF CAP
+Change Physical Footprint: Designator=C3 Old Footprint=220uF CAP New Footprint=220uF CAP
+Change Physical Footprint: Designator=D1 Old Footprint=LED-1 New Footprint=LED-1
+Change Physical Footprint: Designator=D2 Old Footprint=LED-1 New Footprint=LED-1
+Change Physical Footprint: Designator=D3 Old Footprint=LED-1 New Footprint=LED-1
+Change Physical Footprint: Designator=D4 Old Footprint=LED-1 New Footprint=LED-1
+Change Physical Footprint: Designator=D5 Old Footprint=LED-1 New Footprint=LED-1
+Change Physical Footprint: Designator=IC1 Old Footprint=LM386 SOCKET New Footprint=LM386 SOCKET
+Change Physical Footprint: Designator=J1 Old Footprint=AUDIO JACK New Footprint=AUDIO JACK
+Change Physical Footprint: Designator=R1 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R2 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R3 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R4 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R5 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R6 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R7 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R8 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R9 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R10 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R11 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R12 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R13 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R14 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R15 Old Footprint=300 RES New Footprint=300 RES
+Change Physical Footprint: Designator=R16 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R17 Old Footprint=4.7K RES New Footprint=4.7K RES
+Change Physical Footprint: Designator=R18 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R19 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R20 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R21 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R22 Old Footprint=AXIAL-0.3 New Footprint=AXIAL-0.3
+Change Physical Footprint: Designator=R23 Old Footprint=AXIAL-0.3 New Footprint=AXIAL-0.3
+Change Physical Footprint: Designator=R24 Old Footprint=AXIAL-0.3 New Footprint=AXIAL-0.3
+Change Physical Footprint: Designator=R25 Old Footprint=AXIAL-0.3 New Footprint=AXIAL-0.3
+Change Physical Footprint: Designator=R26 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R27 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=R28 Old Footprint=AXIAL-0.3 New Footprint=AXIAL-0.3
+Change Physical Footprint: Designator=R29 Old Footprint=10K RES New Footprint=10K RES
+Change Physical Footprint: Designator=SW0 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW1 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW2 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW3 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW4 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=TB Old Footprint=SHIELD_ARDUINO_NANO New Footprint=SHIELD_ARDUINO_NANO
+Change Physical Footprint: Designator=U1 Old Footprint=SD MODULE New Footprint=SD MODULE
+Change Physical Footprint: Designator=U2 Old Footprint=LCD SCREEN New Footprint=LCD SCREEN
+Change Physical Footprint: Designator=VR1 Old Footprint=POT WITH SPST New Footprint=POT WITH SPST
+Change Physical Footprint: Designator=VR2 Old Footprint=10K POT New Footprint=10K POT
+Change Physical Footprint: Designator=VR3 Old Footprint=50K POT New Footprint=50K POT

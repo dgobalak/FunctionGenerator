@@ -1,0 +1,649 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2021-05-06</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">9:01:49 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc" class="file"><acronym title="C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc">C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">91</td></tr>
+</table>
+</td>
+</table><a name="IDXUQRS1S2M4ELGMOMKO4VPT0XPGJNJL4SQQHZJ1DXGHS2EKJ0SZJH"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDH450XA3LOFQ3KTYTIP2S3FI20ELTLDJFNTMLXKOHYZB00U0YEPKL">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIQZB50RH4B2XEAWU13IURBGTEOSZ3UBGMG1IGYJGSXTCTOQUXXAN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDACEM5Y5JJDLQEODX1PB5GV03ONIX5DGHDMDFP3ILKUFK0UK5X3PL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIL3HDWQ3NJM2HGC0XUCRTF4MWO5VAUARNGYZP0OY5QAZ12DMM0VO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0MUFTTBH30DABLVCKMGA10T4TPL5ZJDXWKZPNCL24DCBNVU5J1LJ">Width Constraint (Min=0.127mm) (Max=25.4mm) (Preferred=0.127mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSFLLKDAUUU4EI553L3JUID5SGXODBKT0YG42EN41NDNKY1CUKJD">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDM1WDFOP0GDWODQE5A1PDWXBXIBRMYLI30223CUNKDSTYHCSBTJG">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.127mm) (Air Gap=0.127mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5RIJT2JTE2WMO2F52UCG5UA1UJEV511FSYZFQFDU5SUCIJTNTIAK">Minimum Annular Ring (Minimum=0.076mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUH5BWNDL52QZNVIJPPAJXLLTYF55UCPCCKFZESMHG0GF3EF1OCYJ">Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXFZLEIBKHZANPIEW5TOGJWEX1KLES0D3PN1PGDKLHPOQOXULAGHF">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEDKR55BCBXVJEZA0KH03B25UNGIX4H540M0M5GJBJLUH0SRQDN4L">Minimum Solder Mask Sliver (Gap=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPUXKUARNKD5VIEHQM432ZKWX3F1ZU44LLGOLZLGF4PULS0E4115F">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</a></td>
+<td class="column2">18</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHMS1303PX0AXJH2IPWFOTOVNKNUIG2LFW3YZE3CBBWEGUSOISRRI">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGIRBRREFVXPZLXAMBXFXOGKFKFPJ311DUJL0TGPGW21GO0XZULOI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKFLGIKGFG3RYOPOZHB5NRUBUF4NORIYIOIGRUF4NVHQLVSPS33F">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFWUCGDQ315EFHTM3VCBKT5V0JNT0XPMMJX3GF0D4PC0PLGQUPEUP">Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2'))</a></td>
+<td class="column2">44</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXMWX2CKGTOUVHKLPCNCRKY4JEKU2S0KJK3PGDIFNZDJXGBOLOPJH">Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1'))</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOG42MI33I2SKEH0JALFGQEEEPHKZFZYE5ODYUXFGTOFPJPVFJ1WE">Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">91</td>
+</tr>
+</table><br><a name="IDH450XA3LOFQ3KTYTIP2S3FI20ELTLDJFNTMLXKOHYZB00U0YEPKL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.127mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.645mil|Location2.X=1788.978mil|Location1.Y=2700.55mil|Location2.Y=2704.883mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.645mil|Location2.X=1788.978mil|Location1.Y=2700.55mil|Location2.Y=2704.883mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.127mm) Between Pad R11-1(19mm,42.534mm) on Top Layer And Track (19.069mm,43.199mm)(24.081mm,43.199mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIQZB50RH4B2XEAWU13IURBGTEOSZ3UBGMG1IGYJGSXTCTOQUXXAN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.631mil|Location2.X=1788.314mil|Location1.Y=2684.085mil|Location2.Y=2720.769mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1751.631mil|Location2.X=1788.314mil|Location1.Y=2684.085mil|Location2.Y=2720.769mil|Absolute=True">Short-Circuit Constraint: Between Pad R11-1(19mm,42.534mm) on Top Layer And Track (19.069mm,43.199mm)(24.081mm,43.199mm) on Top Layer Location : [X = 44.957mm][Y = 68.642mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDACEM5Y5JJDLQEODX1PB5GV03ONIX5DGHDMDFP3ILKUFK0UK5X3PL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1591.063mil|Location2.X=1789.765mil|Location1.Y=2602.813mil|Location2.Y=2705.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1591.063mil|Location2.X=1789.765mil|Location1.Y=2602.813mil|Location2.Y=2705.669mil|Absolute=True">Un-Routed Net Constraint: Net NetR5_2 Between Pad R5-2(15.603mm,41.571mm) on Top Layer And Pad R11-1(19mm,42.534mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.969mil|Location2.X=1854.686mil|Location1.Y=2693.938mil|Location2.Y=2804.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.969mil|Location2.X=1854.686mil|Location1.Y=2693.938mil|Location2.Y=2804.686mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_2 Between Pad R11-2(19mm,45.466mm) on Top Layer And Track (19.069mm,43.199mm)(24.081mm,43.199mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.968mil|Location2.X=1854.686mil|Location1.Y=2302.915mil|Location2.Y=2456.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.968mil|Location2.X=1854.686mil|Location1.Y=2302.915mil|Location2.Y=2456.09mil|Absolute=True">Un-Routed Net Constraint: Net NetR6_2 Between Pad R12-1(19mm,35.534mm) on Top Layer And Track (16.973mm,34.345mm)(19.069mm,34.345mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.969mil|Location2.X=1854.686mil|Location1.Y=1867.164mil|Location2.Y=2105.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1651.969mil|Location2.X=1854.686mil|Location1.Y=1867.164mil|Location2.Y=2105.196mil|Absolute=True">Un-Routed Net Constraint: Net NetR7_2 Between Pad R27-2(19mm,24.466mm) on Top Layer And Track (19.069mm,25.432mm)(19.069mm,28.422mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1278.936mil|Location2.Y=1599.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1278.936mil|Location2.Y=1599.016mil|Absolute=True">Un-Routed Net Constraint: Net SS Between Pad U1-3(6.445mm,7.96mm) on Multi-Layer And Pad TB-13(38.5mm,14.14mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1378.936mil|Location2.Y=1499.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1378.936mil|Location2.Y=1499.016mil|Absolute=True">Un-Routed Net Constraint: Net MOSI Between Pad U1-4(6.445mm,10.5mm) on Multi-Layer And Pad TB-14(38.5mm,11.6mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1078.936mil|Location2.Y=1399.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=2558.072mil|Location1.Y=1078.936mil|Location2.Y=1399.016mil|Absolute=True">Un-Routed Net Constraint: Net MISO Between Pad U1-1(6.445mm,2.88mm) on Multi-Layer And Pad TB-15(38.5mm,9.06mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=3158.072mil|Location1.Y=1178.936mil|Location2.Y=1399.016mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.272mil|Location2.X=3158.072mil|Location1.Y=1178.936mil|Location2.Y=1399.016mil|Absolute=True">Un-Routed Net Constraint: Net SCK Between Pad U1-2(6.445mm,5.42mm) on Multi-Layer And Pad TB-16(53.74mm,9.06mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.223mil|Location2.X=1296.044mil|Location1.Y=1478.936mil|Location2.Y=2143.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.223mil|Location2.X=1296.044mil|Location1.Y=1478.936mil|Location2.Y=2143.307mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U2-4(6.368mm,28.04mm) on Multi-Layer And Pad U1-5(6.445mm,13.04mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.223mil|Location2.X=1296.044mil|Location1.Y=1578.936mil|Location2.Y=2043.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1219.223mil|Location2.X=1296.044mil|Location1.Y=1578.936mil|Location2.Y=2043.307mil|Absolute=True">Un-Routed Net Constraint: Net 5V Between Pad U2-3(6.368mm,25.5mm) on Multi-Layer And Pad U1-6(6.445mm,15.58mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXFZLEIBKHZANPIEW5TOGJWEX1KLES0D3PN1PGDKLHPOQOXULAGHF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1113.541mil|Location2.Y=1121.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1113.541mil|Location2.Y=1121.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-1(6.445mm,2.88mm) on Multi-Layer And Pad U1-1(6.445mm,2.88mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1213.541mil|Location2.Y=1221.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1213.541mil|Location2.Y=1221.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-2(6.445mm,5.42mm) on Multi-Layer And Pad U1-2(6.445mm,5.42mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1313.541mil|Location2.Y=1321.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1313.541mil|Location2.Y=1321.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-3(6.445mm,7.96mm) on Multi-Layer And Pad U1-3(6.445mm,7.96mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1413.541mil|Location2.Y=1421.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1413.541mil|Location2.Y=1421.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-4(6.445mm,10.5mm) on Multi-Layer And Pad U1-4(6.445mm,10.5mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1513.541mil|Location2.Y=1521.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1513.541mil|Location2.Y=1521.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-5(6.445mm,13.04mm) on Multi-Layer And Pad U1-5(6.445mm,13.04mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1613.541mil|Location2.Y=1621.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1253.877mil|Location2.X=1261.439mil|Location1.Y=1613.541mil|Location2.Y=1621.103mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.25mm) Between Pad U1-6(6.445mm,15.58mm) on Multi-Layer And Pad U1-6(6.445mm,15.58mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDPUXKUARNKD5VIEHQM432ZKWX3F1ZU44LLGOLZLGF4PULS0E4115F"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3481.127mil|Location2.X=3487.377mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3481.127mil|Location2.X=3487.377mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D1-1(63mm,15.23mm) on Multi-Layer And Track (58.6mm,14.3mm)(65mm,14.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3481.127mil|Location2.X=3487.377mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3481.127mil|Location2.X=3487.377mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D1-2(63mm,17.77mm) on Multi-Layer And Track (58.6mm,18.7mm)(65mm,18.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3992.939mil|Location2.X=3999.189mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3992.939mil|Location2.X=3999.189mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D2-1(76mm,15.23mm) on Multi-Layer And Track (71.6mm,14.3mm)(78mm,14.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3992.939mil|Location2.X=3999.189mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3992.939mil|Location2.X=3999.189mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D2-2(76mm,17.77mm) on Multi-Layer And Track (71.6mm,18.7mm)(78mm,18.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.749mil|Location2.X=4510.999mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.749mil|Location2.X=4510.999mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D3-1(89mm,15.23mm) on Multi-Layer And Track (84.6mm,14.3mm)(91mm,14.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.749mil|Location2.X=4510.999mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4504.749mil|Location2.X=4510.999mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D3-2(89mm,17.77mm) on Multi-Layer And Track (84.6mm,18.7mm)(91mm,18.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5016.561mil|Location2.X=5022.811mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5016.561mil|Location2.X=5022.811mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D4-1(102mm,15.23mm) on Multi-Layer And Track (97.6mm,14.3mm)(104mm,14.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5016.561mil|Location2.X=5022.811mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5016.561mil|Location2.X=5022.811mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D4-2(102mm,17.77mm) on Multi-Layer And Track (97.6mm,18.7mm)(104mm,18.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5528.371mil|Location2.X=5534.621mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5528.371mil|Location2.X=5534.621mil|Location1.Y=1567.607mil|Location2.Y=1573.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D5-1(115mm,15.23mm) on Multi-Layer And Track (110.6mm,14.3mm)(117mm,14.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5528.371mil|Location2.X=5534.621mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5528.371mil|Location2.X=5534.621mil|Location1.Y=1733.231mil|Location2.Y=1739.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.066mm &lt; 0.127mm) Between Pad D5-2(115mm,17.77mm) on Multi-Layer And Track (110.6mm,18.7mm)(117mm,18.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.066mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.771mil|Location2.X=3376.105mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3371.771mil|Location2.X=3376.105mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-1(60.96mm,41mm) on Multi-Layer And Track (59.309mm,41.381mm)(70.231mm,41.381mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.402mil|Location2.X=3478.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3474.402mil|Location2.X=3478.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-2(63.5mm,41mm) on Multi-Layer And Track (59.309mm,41.381mm)(70.231mm,41.381mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3574.402mil|Location2.X=3578.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3574.402mil|Location2.X=3578.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-3(66.04mm,41mm) on Multi-Layer And Track (59.309mm,41.381mm)(70.231mm,41.381mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.402mil|Location2.X=3678.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.402mil|Location2.X=3678.735mil|Location1.Y=2630.943mil|Location2.Y=2635.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-4(68.58mm,41mm) on Multi-Layer And Track (59.309mm,41.381mm)(70.231mm,41.381mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3673.708mil|Location2.X=3678.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3673.708mil|Location2.X=3678.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-5(68.58mm,48.62mm) on Multi-Layer And Track (59.309mm,48.239mm)(70.231mm,48.239mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3573.708mil|Location2.X=3578.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3573.708mil|Location2.X=3578.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-6(66.04mm,48.62mm) on Multi-Layer And Track (59.309mm,48.239mm)(70.231mm,48.239mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3473.708mil|Location2.X=3478.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3473.708mil|Location2.X=3478.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-7(63.5mm,48.62mm) on Multi-Layer And Track (59.309mm,48.239mm)(70.231mm,48.239mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.708mil|Location2.X=3378.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.708mil|Location2.X=3378.041mil|Location1.Y=2900.943mil|Location2.Y=2905.277mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad IC1-8(60.96mm,48.62mm) on Multi-Layer And Track (59.309mm,48.239mm)(70.231mm,48.239mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGIRBRREFVXPZLXAMBXFXOGKFKFPJ311DUJL0TGPGW21GO0XZULOI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=1883.764mil|Location2.Y=1908.988mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=1883.764mil|Location2.Y=1908.988mil|Absolute=True">Net Antennae: Track (18.645mm,22.5mm)(19.069mm,22.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=1999.196mil|Location2.Y=2024.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=1999.196mil|Location2.Y=2024.42mil|Absolute=True">Net Antennae: Track (19.069mm,25.432mm)(19.069mm,28.422mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=2465.522mil|Location2.Y=2490.746mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=2465.522mil|Location2.Y=2490.746mil|Absolute=True">Net Antennae: Track (19.069mm,37.277mm)(19.069mm,40.267mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=2698.686mil|Location2.Y=2723.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1748.686mil|Location2.X=1766.832mil|Location1.Y=2698.686mil|Location2.Y=2723.91mil|Absolute=True">Net Antennae: Track (19.069mm,43.199mm)(24.081mm,43.199mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFWUCGDQ315EFHTM3VCBKT5V0JNT0XPMMJX3GF0D4PC0PLGQUPEUP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.165mil|Location2.X=20457.165mil|Location1.Y=2250.787mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.165mil|Location2.X=20457.165mil|Location1.Y=2250.787mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component BT1-9V BATTERY (6mm,37.96mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.157mil|Location2.X=20457.165mil|Location1.Y=1253.346mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.157mil|Location2.X=20457.165mil|Location1.Y=1253.346mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component C1-0.01uF CAP (31mm,11mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.079mil|Location2.X=20457.165mil|Location1.Y=1012.795mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1370.079mil|Location2.X=20457.165mil|Location1.Y=1012.795mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component C2-220uF CAP (18.25mm,8.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3208.13mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3208.13mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component D1-LED0 (63mm,16.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.941mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3719.941mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component D2-LED1 (76mm,16.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4231.752mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4231.752mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component D3-LED2 (89mm,16.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4743.563mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4743.563mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component D4-LED3 (102mm,16.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5255.374mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5255.374mil|Location2.X=20457.165mil|Location1.Y=1564.429mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component D5-LED3 (115mm,16.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3319.685mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3319.685mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component J1-AUDIO JACK (67.5mm,29.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3343.11mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3343.11mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component R22-Res (64mm,20.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3854.921mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3854.921mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component R23-Res (77mm,20.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.732mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.732mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component R24-Res (90mm,20.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4878.543mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4878.543mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component R25-Res (103mm,20.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5390.354mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5390.354mil|Location2.X=20457.165mil|Location1.Y=1777.087mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component R28-Res (116mm,20.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3293.898mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3293.898mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component SW0-PUSH BUTTON (64.455mm,6.444mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.709mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.709mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component SW1-PUSH BUTTON (77.455mm,6.444mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4317.52mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4317.52mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component SW2-PUSH BUTTON (90.455mm,6.444mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4827.756mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4827.756mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component SW3-PUSH BUTTON (103.415mm,6.444mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5342.717mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5342.717mil|Location2.X=20457.165mil|Location1.Y=1069.646mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component SW4-PUSH BUTTON (116.495mm,6.444mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4071.802mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4071.802mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component VR2-10K POT (86.604mm,29.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4815.748mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4815.748mil|Location2.X=20457.165mil|Location1.Y=1977.362mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And Small Component VR3-50K POT (105.5mm,29.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=1854.724mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=1854.724mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R10-10K RES (30.069mm,23.966mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.299mil|Location2.X=20457.165mil|Location1.Y=2643.464mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.299mil|Location2.X=20457.165mil|Location1.Y=2643.464mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R11-10K RES (19mm,44mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1895.433mil|Location2.X=20457.165mil|Location1.Y=2592.126mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1895.433mil|Location2.X=20457.165mil|Location1.Y=2592.126mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R1-20K RES (25mm,41.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.298mil|Location2.X=20457.165mil|Location1.Y=2367.875mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.298mil|Location2.X=20457.165mil|Location1.Y=2367.875mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R12-10K RES (19mm,37mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.298mil|Location2.X=20457.165mil|Location1.Y=2092.283mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.298mil|Location2.X=20457.165mil|Location1.Y=2092.283mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R13-10K RES (19mm,30mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2139.37mil|Location2.X=20457.165mil|Location1.Y=2554.212mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2139.37mil|Location2.X=20457.165mil|Location1.Y=2554.212mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R14-20K RES (30mm,41.733mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1839.174mil|Location2.X=20457.165mil|Location1.Y=1706.3mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1839.174mil|Location2.X=20457.165mil|Location1.Y=1706.3mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R15-300 RES (23.5mm,19mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.914mil|Location2.X=20457.165mil|Location1.Y=1706.3mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.914mil|Location2.X=20457.165mil|Location1.Y=1706.3mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R16-20K RES (29mm,19mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R18-10K RES (67.534mm,12.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4080.472mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4080.472mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R19-10K RES (80.5mm,12.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4592.283mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4592.283mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R20-10K RES (93.5mm,12.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.095mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5104.095mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R21-10K RES (106.5mm,12.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=2361.53mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=2361.53mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R2-20K RES (25.103mm,35.643mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.079mil|Location2.X=20457.165mil|Location1.Y=1903.15mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.079mil|Location2.X=20457.165mil|Location1.Y=1903.15mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R26-20K RES (14.069mm,24mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.299mil|Location2.X=20457.165mil|Location1.Y=1816.692mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.299mil|Location2.X=20457.165mil|Location1.Y=1816.692mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R27-10K RES (19mm,23mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5615.905mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5615.905mil|Location2.X=20457.165mil|Location1.Y=1450.394mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R29-10K RES (119.5mm,12.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=2130.934mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=2130.934mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R3-20K RES (25.103mm,29.786mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=1900.337mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.488mil|Location2.X=20457.165mil|Location1.Y=1900.337mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R4-20K RES (25.103mm,23.929mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.756mil|Location2.X=20457.165mil|Location1.Y=2594.938mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.756mil|Location2.X=20457.165mil|Location1.Y=2594.938mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R5-20K RES (14.137mm,41.571mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.756mil|Location2.X=20457.165mil|Location1.Y=2364.342mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.756mil|Location2.X=20457.165mil|Location1.Y=2364.342mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R6-20K RES (14.137mm,35.714mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1466.417mil|Location2.X=20457.165mil|Location1.Y=2133.746mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1466.417mil|Location2.X=20457.165mil|Location1.Y=2133.746mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R7-20K RES (14.103mm,29.857mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=2321.05mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=2321.05mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R8-10K RES (30.069mm,35.811mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=2087.888mil|Location2.Y=4190.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2142.086mil|Location2.X=20457.165mil|Location1.Y=2087.888mil|Location2.Y=4190.433mil|Absolute=True">Room Definition: Between Room Sheet2 (Bounding Region = (189.285mm, 86.879mm, 519.612mm, 106.437mm) (InComponentClass('Sheet2')) And SMT Small Component R9-10K RES (30.069mm,29.888mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXMWX2CKGTOUVHKLPCNCRKY4JEKU2S0KJK3PGDIFNZDJXGBOLOPJH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3333.937mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2971.928mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3333.937mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2971.928mil|Absolute=True">Room Definition: Between DIP Component IC1-LM386 SOCKET (60.96mm,41mm) on Top Layer And Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2410.237mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2410.237mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True">Room Definition: Between DIP Component TB-ARDUINO_NANO (46.12mm,26.84mm) on Top Layer And Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.658mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1117.658mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True">Room Definition: Between Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) And SIP Component U1-SD MODULE (6.445mm,2.88mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1095.207mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1095.207mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True">Room Definition: Between Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) And SIP Component U2-LCD SCREEN (6.368mm,24.23mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4519.606mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=3045.571mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4519.606mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=3045.571mil|Absolute=True">Room Definition: Between Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) And SIP Component VR1-POT WITH SPST (93mm,45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3781.496mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=3101.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3781.496mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=3101.378mil|Absolute=True">Room Definition: Between Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) And Small Component C3-220uF CAP (79.5mm,45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1619.842mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Daniel\Desktop\Function-Generator\Function-Generator\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1619.842mil|Location2.X=10510mil|Location1.Y=1055mil|Location2.Y=2970mil|Absolute=True">Room Definition: Between Room Sheet1 (Bounding Region = (178.943mm, 26.797mm, 266.954mm, 75.438mm) (InComponentClass('Sheet1')) And SMT Small Component R17-4.7K RES (18mm,19mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

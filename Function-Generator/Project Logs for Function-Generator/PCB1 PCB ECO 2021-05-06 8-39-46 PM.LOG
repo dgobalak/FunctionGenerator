@@ -1,0 +1,25 @@
+Change Physical Footprint: Designator=BT1 Old Footprint=9V Battery New Footprint=9V Battery
+Change Physical Footprint: Designator=IC1 Old Footprint=LM386 SOCKET New Footprint=LM386 SOCKET
+Change Physical Footprint: Designator=J1 Old Footprint=AUDIO JACK New Footprint=AUDIO JACK
+Change Physical Footprint: Designator=R1 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R2 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R3 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R4 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R5 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R6 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R7 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R14 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R15 Old Footprint=300 RES New Footprint=300 RES
+Change Physical Footprint: Designator=R16 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=R17 Old Footprint=4.7K RES New Footprint=4.7K RES
+Change Physical Footprint: Designator=R26 Old Footprint=20K RES New Footprint=20K RES
+Change Physical Footprint: Designator=SW0 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW1 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW2 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW3 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=SW4 Old Footprint=Push Button New Footprint=Push Button
+Change Physical Footprint: Designator=TB Old Footprint=SHIELD_ARDUINO_NANO New Footprint=SHIELD_ARDUINO_NANO
+Change Physical Footprint: Designator=U2 Old Footprint=LCD SCREEN New Footprint=LCD SCREEN
+Change Physical Footprint: Designator=VR1 Old Footprint=POT WITH SPST New Footprint=POT WITH SPST
+Change Physical Footprint: Designator=VR2 Old Footprint=10K POT New Footprint=10K POT
+Change Physical Footprint: Designator=VR3 Old Footprint=50K POT New Footprint=50K POT
